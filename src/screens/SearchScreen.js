@@ -20,9 +20,18 @@ const SearchScreen = () => {
                 onTermSubmit={() => searchApi(term)}
             />
             {error ? <Text>{error}</Text> : null}
-            <ResultsList title="Cost Effective" results={filterResultsByPrice('$')}/>
-            <ResultsList title="Bit Pricier" results={filterResultsByPrice('$$')}/>
-            <ResultsList title="Big Spender" results={filterResultsByPrice('$$$')}/>
+            {filterResultsByPrice('$').length > 0 ?
+                <ResultsList title="Cost Effective" results={filterResultsByPrice('$')} />
+                : null
+            }
+            {filterResultsByPrice('$$').length > 0 ?
+                <ResultsList title="Bit Pricier" results={filterResultsByPrice('$$')} />
+                : null
+            }
+            {filterResultsByPrice('$$$').length > 0 ?
+                <ResultsList title="Big Spender" results={filterResultsByPrice('$$$')} />
+                : null
+            }
         </View>
 
     )
