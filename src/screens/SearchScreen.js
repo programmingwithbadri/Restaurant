@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import ResultsList from '../components/ResultsList';
 import SearchBar from '../components/SearchBar';
 import useResults from '../hooks/useResults';
@@ -13,25 +13,30 @@ const SearchScreen = () => {
     }
 
     return (
-        <View>
+        // Flex:1 style will constraint the view elements to the screen size(helphful to show contents in small screen device)
+        // This will allow to show only the elements that can be shown in the screen size
+        // The additional data/elements will be shown by scrolling
+        <View style={{ flex: 1 }}>
             <SearchBar
                 term={term}
                 onTermChange={(newTerm) => setTerm(newTerm)}
                 onTermSubmit={() => searchApi(term)}
             />
             {error ? <Text>{error}</Text> : null}
-            {filterResultsByPrice('$').length > 0 ?
-                <ResultsList title="Cost Effective" results={filterResultsByPrice('$')} />
-                : null
-            }
-            {filterResultsByPrice('$$').length > 0 ?
-                <ResultsList title="Bit Pricier" results={filterResultsByPrice('$$')} />
-                : null
-            }
-            {filterResultsByPrice('$$$').length > 0 ?
-                <ResultsList title="Big Spender" results={filterResultsByPrice('$$$')} />
-                : null
-            }
+            <ScrollView>
+                {filterResultsByPrice('$').length > 0 ?
+                    <ResultsList title="Cost Effective" results={filterResultsByPrice('$')} />
+                    : null
+                }
+                {filterResultsByPrice('$$').length > 0 ?
+                    <ResultsList title="Bit Pricier" results={filterResultsByPrice('$$')} />
+                    : null
+                }
+                {filterResultsByPrice('$$$').length > 0 ?
+                    <ResultsList title="Big Spender" results={filterResultsByPrice('$$$')} />
+                    : null
+                }
+            </ScrollView>
         </View>
 
     )
