@@ -16,6 +16,7 @@ const SearchScreen = () => {
         // Flex:1 style will constraint the view elements to the screen size(helphful to show contents in small screen device)
         // This will allow to show only the elements that can be shown in the screen size
         // The additional data/elements will be shown by scrolling
+        // We can also use <> & </> instead of View to fix this 
         <View style={{ flex: 1 }}>
             <SearchBar
                 term={term}
