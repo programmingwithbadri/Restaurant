@@ -25,18 +25,9 @@ const SearchScreen = () => {
             />
             {error ? <Text>{error}</Text> : null}
             <ScrollView>
-                {filterResultsByPrice('$').length > 0 ?
-                    <ResultsList title="Cost Effective" results={filterResultsByPrice('$')} />
-                    : null
-                }
-                {filterResultsByPrice('$$').length > 0 ?
-                    <ResultsList title="Bit Pricier" results={filterResultsByPrice('$$')} />
-                    : null
-                }
-                {filterResultsByPrice('$$$').length > 0 ?
-                    <ResultsList title="Big Spender" results={filterResultsByPrice('$$$')} />
-                    : null
-                }
+                <ResultsList title="Cost Effective" results={filterResultsByPrice('$')} />
+                <ResultsList title="Bit Pricier" results={filterResultsByPrice('$$')} />
+                <ResultsList title="Big Spender" results={filterResultsByPrice('$$$')} />
             </ScrollView>
         </View>
 
